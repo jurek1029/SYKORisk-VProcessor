@@ -1,7 +1,7 @@
 #include "types.h"
 #include "mem_abs.h"
 
-void F_ADD1(void){
+void F_ADD(void){
     DataType R1=getMEMC(getPC()) & 0x000F;                  //identyfikacja numeru rejestru arg. 1
     DataType R2=(getMEMC(getPC()) & 0x00F0)>>4;             //identyfikacja numeru rejestru arg. 2
 
@@ -12,7 +12,7 @@ void F_ADD1(void){
     else
         resetFlagsRegister(FLAG_C);                         //wykasowanie flagi przeniesienia
         
-    setRegister(R1, (getRegister(R1) + getRegister(R2)) % MAX_DATA_VAL);    //w³aœciwe obliczenie
+    setRegister(R1, (getRegister(R1) + getRegister(R2)) % MAX_DATA_VAL);    //wï¿½aï¿½ciwe obliczenie
 
-    incPC();                                                //zwiêkszenie licznika rozkazów
+    incPC();                                                //zwiï¿½kszenie licznika rozkazï¿½w
 }

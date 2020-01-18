@@ -6,7 +6,7 @@
 	.type	main, @function
 
 _start:
-	jalr a1
+	lui a0, 2
 
 main:
 	mv	a4,a0

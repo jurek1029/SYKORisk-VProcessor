@@ -10,10 +10,13 @@
 //naglowki poszczegolnych opcodow 
 void F_JAL(CodeType T);
 void F_JALR(CodeType T);
+void F_ADD(CodeType T);
+void F_LUI(CodeType T);
 
 //wzorce opcodow
 #define ID_JAL 0x6F
 #define ID_JALR 0x67
+#define ID_LUI 0x37
 #define ID_ADD_R1_R2            0x01
 #define ID_ADD_R1_MEM_R2        0x02
 
@@ -41,6 +44,9 @@ int main(void){
                 break;
             case ID_JALR:
                 if ((T & FUNCT3_MASK) >> FUNCT3_SHIFT == 0x0) F_JALR(T);
+                break;
+            case ID_LUI:
+                F_LUI(T);
                 break;
             default:
                 printf("Wykryto nieznana instrukcje (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
