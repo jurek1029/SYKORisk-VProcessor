@@ -6,7 +6,9 @@
 	.type	main, @function
 
 _start:
-	lui a0, 2
+	lui a1, 2
+	lui a2, 3
+	add a0, a1, a2
 
 main:
 	mv	a4,a0

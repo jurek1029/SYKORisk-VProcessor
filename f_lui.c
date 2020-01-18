@@ -14,6 +14,6 @@ void F_LUI(CodeType T){
     imm = (T & IMM_MASK) >> IMM_SHIFT;
 
     setRegister(rd, imm);
-    printf("stan rejestru 0x%08lx : 0x%08lx\r\n", rd, getRegister(rd));    
+    //printf("stan rejestru 0x%08lx : 0x%08lx\r\n", rd, getRegister(rd));    
     incPC();
 }

@@ -6,7 +6,9 @@
 #include "merror.h"
 
 #define FUNCT3_MASK 0x7000
+#define FUNCT7_MASK 0xFE000000
 #define FUNCT3_SHIFT 12
+#define FUNCT7_SHIFT 25
 //naglowki poszczegolnych opcodow 
 void F_JAL(CodeType T);
 void F_JALR(CodeType T);
@@ -17,8 +19,7 @@ void F_LUI(CodeType T);
 #define ID_JAL 0x6F
 #define ID_JALR 0x67
 #define ID_LUI 0x37
-#define ID_ADD_R1_R2            0x01
-#define ID_ADD_R1_MEM_R2        0x02
+#define ID_ADD_R1_R2 0x33
 
 void merror(int i, int j){
     printf("ERROR code: 0x%08lx with arg. 0x%08lx at PC=0x%08lx\r\n", i, j, getPC());
@@ -47,6 +48,9 @@ int main(void){
                 break;
             case ID_LUI:
                 F_LUI(T);
+                break;
+            case ID_ADD_R1_R2:
+                if (((T & FUNCT3_MASK) >> FUNCT3_SHIFT == 0x0) && ((T & FUNCT7_MASK) >> FUNCT7_SHIFT == 0x0)) F_ADD(T);
                 break;
             default:
                 printf("Wykryto nieznana instrukcje (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
