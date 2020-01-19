@@ -1,4 +1,5 @@
-@set MPATH=G:\Libs\Risc-V\bin rem D:\Risc-V\bin
+@set MPATH=G:\Libs\Risc-V\bin
+rem D:\Risc-V\bin
 
 @set GAS=%MPATH%\riscv64-unknown-elf-as.exe
 @set GLD=%MPATH%\riscv64-unknown-elf-ld.exe
@@ -15,3 +16,5 @@
 @%GOBJCOPY% -j ".text" -O binary test file_code.bin
 @%GOBJCOPY% -j ".data" -O binary test file_data_in.bin
 @%GOBJCOPY% -j ".riscv.attributes" -O binary test file_reg_in.bin
+ 
+pause
