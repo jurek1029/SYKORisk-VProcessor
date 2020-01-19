@@ -9,7 +9,7 @@ typedef unsigned short      AddressType;
 
 //najwieksze wartosci 
 #define MAX_ADDRESS         0xFFFF
-#define MAX_DATA_VAL        0xFF
+#define MAX_DATA_VAL        0xFFFFFFFF
 
 //Numer ostatniego rejestru
 #define MAX_REGISTER        31

@@ -56,7 +56,7 @@ void saveMEMD(char *file){        //zapisz zawarto�� pami�ci danych do pli
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
-    fwrite(MEMD, MAX_ADDRESS+1, 1, file_ptr);
+    fwrite(MEMD, sizeof(MEMD), 1, file_ptr);
     fclose(file_ptr);
 }
 
@@ -64,11 +64,11 @@ void saveREGS(char *file){        //zapisz zawarto�� rejestr�w i PC do pli
     FILE *file_ptr;
     file_ptr=fopen(file, "wb");
     if(!file_ptr){
-        printf("MEMD cannot open to write (%s)!\n", file);
+        printf("REGS cannot open to write (%s)!\n", file);
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
-    fwrite(REG, MAX_REGISTER+1, 1, file_ptr);
+    fwrite(REG, sizeof(REG), 1, file_ptr);
     fwrite(&PC, sizeof(AddressType), 1, file_ptr);
     fwrite(&FLAGS, sizeof(DataType), 1, file_ptr);
     fclose(file_ptr);
@@ -111,6 +111,7 @@ DataType getRegister(int n){
 }
 
 void setRegister(int n, DataType v){
+	printf("setRegister write to:%d v:%d \n", n,v);
     if(n>MAX_REGISTER)               //Czy odwolanie nie siega poza zdefiniowany zestaw rejestrow
         merror(INVALID_REGISTER_SET, n);
     REG[n]=v;

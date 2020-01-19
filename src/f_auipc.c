@@ -13,7 +13,7 @@ void F_AUIPC(CodeType T) {
 	rd = (T & MASK_RD) >> SHIFT_RD;
 	imm = (T & MASK_IMM);
 
-	setRegister(rd, imm); // fils lowest 12-bits with zeros and stores in rd
+	setRegister(rd, imm + getPC()); // fils lowest 12-bits with zeros and stores in rd
 	printf("Wykonam AUIPC, (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
 	printf("stan rejestru 0x%08lx : 0x%08lx\r\n", rd, getRegister(rd));
 	incPC();
