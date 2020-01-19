@@ -86,6 +86,12 @@ DataType getMEMD(AddressType p){
     return MEMD[p];
 }
 
+void setMEMD(AddressType p, DataType v) {
+	if (p > MAX_ADDRESS)               //Czy odwolanie nie siega poza pamiec danych
+		merror(OUT_OF_DATA_MEMORY_SPACE_ERROR, p);
+	MEMD[p] = v;
+}
+
 void setPC(AddressType v){
     PC=v;
 }
