@@ -2,14 +2,15 @@
 #include "merror.h"
 #include "types.h"
 
-CodeType    MEMC[MAX_ADDRESS+1];    //obszar pamiêci kodu 
-DataType    MEMD[MAX_ADDRESS+1];    //obszar pamiêci danych
-DataType    REG[MAX_REGISTER+1];    //deklaracja przechowywania rejestrów
+CodeType    MEMC[MAX_ADDRESS+1];    //obszar pamiï¿½ci kodu 
+DataType    MEMD[MAX_ADDRESS+1];    //obszar pamiï¿½ci danych
+DataType    REG[MAX_REGISTER+1];    //deklaracja przechowywania rejestrï¿½w
 
-AddressType   PC;                   //licznik rozkazów
+AddressType   PC;                   //licznik rozkazï¿½w
+AddressType IP;
 DataType    FLAGS;                  //flagi procesora
 
-void loadMEMC(char *file){          //£adowanie pamiêci kodu z pliku 
+void loadMEMC(char *file){          //ï¿½adowanie pamiï¿½ci kodu z pliku 
     FILE *file_ptr;
     file_ptr=fopen(file, "rb");
     if(!file_ptr){
@@ -21,19 +22,7 @@ void loadMEMC(char *file){          //£adowanie pamiêci kodu z pliku
     fclose(file_ptr);
 }
 
-void loadMEMD(char *file){        //£adowanie pamiêci danych z pliku
-    FILE *file_ptr;
-    file_ptr=fopen(file, "rb");
-    if(!file_ptr){
-        printf("MEMD file not found (%s)!\n", file);
-        exit(-3);
-    }     
-    fseek(file_ptr, 0, SEEK_SET);
-    fread(MEMD, MAX_ADDRESS+1, 1, file_ptr);
-    fclose(file_ptr);
-}
-
-void loadREGS(char *file){        //£adowanie stanu rejestrów i PC z pliku
+void loadMEMD(char *file){        //ï¿½adowanie pamiï¿½ci danych z pliku
     FILE *file_ptr;
     file_ptr=fopen(file, "rb");
     if(!file_ptr){
@@ -41,13 +30,25 @@ void loadREGS(char *file){        //£adowanie stanu rejestrów i PC z pliku
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
-    fread(REG, MAX_REGISTER+1, 1, file_ptr);        //Ladowanie stanu rejestrów
-    fread(&PC, sizeof(AddressType), 1, file_ptr);   //Ladowanie stanu PC (w pliku jest za kopia rejestrów)
+    fread(MEMD, MAX_ADDRESS+1, 1, file_ptr);
+    fclose(file_ptr);
+}
+
+void loadREGS(char *file){        //ï¿½adowanie stanu rejestrï¿½w i PC z pliku
+    FILE *file_ptr;
+    file_ptr=fopen(file, "rb");
+    if(!file_ptr){
+        printf("MEMD file not found (%s)!\n", file);
+        exit(-3);
+    }    
+    fseek(file_ptr, 0, SEEK_SET);
+    fread(REG, MAX_REGISTER+1, 1, file_ptr);        //Ladowanie stanu rejestrï¿½w
+    fread(&PC, sizeof(AddressType), 1, file_ptr);   //Ladowanie stanu PC (w pliku jest za kopia rejestrï¿½w)
     fread(&FLAGS, sizeof(DataType), 1, file_ptr);   //Ladowanie stanu rejestru floagowe (w pliku jest za kopia PC)
     fclose(file_ptr);
 }
 
-void saveMEMD(char *file){        //zapisz zawartoœæ pamiêci danych do pliku 
+void saveMEMD(char *file){        //zapisz zawartoï¿½ï¿½ pamiï¿½ci danych do pliku 
     FILE *file_ptr;
     file_ptr=fopen(file, "wb");
     if(!file_ptr){
@@ -59,7 +60,7 @@ void saveMEMD(char *file){        //zapisz zawartoœæ pamiêci danych do pliku
     fclose(file_ptr);
 }
 
-void saveREGS(char *file){        //zapisz zawartoœæ rejestrów i PC do pliku 
+void saveREGS(char *file){        //zapisz zawartoï¿½ï¿½ rejestrï¿½w i PC do pliku 
     FILE *file_ptr;
     file_ptr=fopen(file, "wb");
     if(!file_ptr){

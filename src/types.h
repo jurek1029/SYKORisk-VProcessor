@@ -1,9 +1,10 @@
 #ifndef __TYPES_H__
 #define __TYPES_H__
+#include <stdint.h>
 
 //definicje nowych typow danych
-typedef unsigned char       DataType;
-typedef unsigned short      CodeType;
+typedef uint32_t       DataType;
+typedef uint32_t      CodeType;
 typedef unsigned short      AddressType;
 
 //najwieksze wartosci 
