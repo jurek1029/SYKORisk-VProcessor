@@ -48,14 +48,6 @@ void loadREGS(char *file){        //�adowanie stanu rejestr�w i PC z pliku
     fclose(file_ptr);
 }
 
-uint32_t SwapEndians(uint32_t num)
-{
-	return ((num >> 24) & 0xff) | // move byte 3 to byte 0
-		((num << 8) & 0xff0000) | // move byte 1 to byte 2
-		((num >> 8) & 0xff00) | // move byte 2 to byte 1
-		((num << 24) & 0xff000000); // byte 0 to byte 3
-}
-
 void saveMEMD(char *file){        //zapisz zawarto�� pami�ci danych do pliku 
     FILE *file_ptr;
     file_ptr=fopen(file, "wb");
@@ -76,7 +68,6 @@ void saveREGS(char *file){        //zapisz zawarto�� rejestr�w i PC do pli
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
-	for (int i = 0; i < MAX_REGISTER + 1; i++)SwapEndians(REG[i]);
     fwrite(REG, sizeof(REG), 1, file_ptr);
     fwrite(&PC, sizeof(AddressType), 1, file_ptr);
     fwrite(&FLAGS, sizeof(DataType), 1, file_ptr);
