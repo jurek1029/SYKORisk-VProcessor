@@ -13,8 +13,6 @@ rem D:\Risc-V\bin
 %GLD% %LD_OPTIONS% -Tlinker.ld main.o -o test
 %GOBJDUMP% -DxS test > test.lst
 %GREADELF% -a test >test_elf.lst
-@%GOBJCOPY% -j ".text" -O binary test file_code.bin
-@%GOBJCOPY% -j ".data" -O binary test file_data_in.bin
+@%GOBJCOPY% -j ".text" -O binary test ./../file_code.bin
+@%GOBJCOPY% -j ".data" -O binary test ./../file_data_in.bin
 @%GOBJCOPY% -j ".riscv.attributes" -O binary test file_reg_in.bin
- 
-pause
