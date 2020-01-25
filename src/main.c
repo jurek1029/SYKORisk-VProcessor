@@ -96,7 +96,7 @@ int main(void){
 				default:
 					printf("Wykryto nieznana instrukcje (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
 					printf("Wyluskany opcode (T=0x%08lx)\r\n", i);
-					saveMEMD("file_data.bin");      //zapisz zawarto�� pami�ci danych do pliku
+					saveMEMD("file_data_out.bin");      //zapisz zawarto�� pami�ci danych do pliku
 					saveREGS("file_reg_out.bin");   //zapisz zawarto�� rejestr�w i PC do pliku 
 					return -1;
 				}
