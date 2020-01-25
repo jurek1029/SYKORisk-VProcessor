@@ -9,6 +9,7 @@ void saveREGS(char *file);
 
 CodeType getMEMC(AddressType p);
 DataType getMEMD(AddressType p);
+void setMEMD(AddressType p, DataType v);
 
 void setPC(AddressType v);
 AddressType getPC(void);

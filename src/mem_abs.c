@@ -30,7 +30,7 @@ void loadMEMD(char *file){        //�adowanie pami�ci danych z pliku
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
-    fread(MEMD, MAX_ADDRESS+1, 1, file_ptr);
+    fread(MEMD, sizeof(MEMD), 1, file_ptr);
     fclose(file_ptr);
 }
 
@@ -42,7 +42,7 @@ void loadREGS(char *file){        //�adowanie stanu rejestr�w i PC z pliku
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
-    fread(REG, MAX_REGISTER+1, 1, file_ptr);        //Ladowanie stanu rejestr�w
+    fread(REG, sizeof(REG), 1, file_ptr);        //Ladowanie stanu rejestr�w
     fread(&PC, sizeof(AddressType), 1, file_ptr);   //Ladowanie stanu PC (w pliku jest za kopia rejestr�w)
     fread(&FLAGS, sizeof(DataType), 1, file_ptr);   //Ladowanie stanu rejestru floagowe (w pliku jest za kopia PC)
     fclose(file_ptr);
@@ -111,7 +111,7 @@ DataType getRegister(int n){
 }
 
 void setRegister(int n, DataType v){
-	printf("setRegister write to:%d v:%d \n", n,v);
+	printf("setRegister write to:%d v:0x%08lx \n", n,v);
     if(n>MAX_REGISTER)               //Czy odwolanie nie siega poza zdefiniowany zestaw rejestrow
         merror(INVALID_REGISTER_SET, n);
     REG[n]=v;

@@ -1,6 +1,8 @@
 #ifndef __TYPES_H__
 #define __TYPES_H__
 #include <stdint.h>
+#include <stdio.h> //to fix warnings
+#include <stdlib.h>//tp fix warnings
 
 //definicje nowych typow danych
 typedef uint32_t       DataType;
