@@ -17,7 +17,7 @@ void F_LW(CodeType T) {
 	rd = GET(RD);
 	rs1 = GET(RS1);
 	offset = GET(OFFSET);
-
+	if (offset & 0x800) offset = offset | 0xFFFFF800; //sign-extended
 	printf("Wykonam LW, (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
 	printf("LW: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
 	printf("LW: rs1 adres: %d data: 0x%08lx \r\n", rs1, getRegister(rs1));
