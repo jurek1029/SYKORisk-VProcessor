@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in {0..3}
+for i in {0..5}
 do
 	echo test $i
 	cd test_$i

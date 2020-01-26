@@ -9,7 +9,7 @@ rem D:\Risc-V\bin
 
 @set LD_OPTIONS=-nostartfiles 
 
-for /l %%x in (0, 1, 2) do (
+for /l %%x in (0, 1, 5) do (
 	%GAS% ./test_%%x/%%x.s -o ./test_%%x/main.o
 	%GLD% %LD_OPTIONS% -T./../linker.ld ./test_%%x/main.o -o ./test_%%x/test
 	%GOBJDUMP% -DxS ./test_%%x/test > ./test_%%x/test.lst
