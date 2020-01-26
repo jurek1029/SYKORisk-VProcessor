@@ -87,6 +87,7 @@ DataType getMEMD(AddressType p){
 }
 
 void setMEMD(AddressType p, DataType v) {
+	printf("setMEMD write to:%d v:0x%08lx \n", p, v);
 	if (p > MAX_ADDRESS)               //Czy odwolanie nie siega poza pamiec danych
 		merror(OUT_OF_DATA_MEMORY_SPACE_ERROR, p);
 	MEMD[p] = v;
