@@ -18,5 +18,5 @@ for /l %%x in (0, 1, 10) do (
 	@%GOBJCOPY% -j ".data" -O binary ./test_%%x/test ./test_%%x/file_data_in.bin
 	@%GOBJCOPY% -j ".riscv.attributes" -O binary ./test_%%x/test ./test_%%x/file_reg_in.bin
 
-	python G:\School\Projekty\SYKO\binMaker\binMaker.py ./test_%%x/
+	python ./../../binaryGeneration/binMaker.py ./test_%%x/
 )
