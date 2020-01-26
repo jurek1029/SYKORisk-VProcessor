@@ -1,6 +1,6 @@
 
-./test_9/test:     file format elf64-littleriscv
-./test_9/test
+./test_6/test:     file format elf64-littleriscv
+./test_6/test
 architecture: riscv:rv64, flags 0x00000012:
 EXEC_P, HAS_SYMS
 start address 0x0000000000000000

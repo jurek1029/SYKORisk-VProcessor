@@ -9,7 +9,7 @@ for i in range(0,65536):
 newFile.close()
 
 newFile = open(sys.argv[1] + "file_reg_in.bin", "wb")
-for i in range(0,31):
+for i in range(0,33):
 	newFile.write(bytearray.fromhex('00000000'))
 newFile.close()
 
