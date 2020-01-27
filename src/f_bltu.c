@@ -9,9 +9,9 @@
 #define RS2_MASK 0x1F00000
 
 #define SHIFT_1_4 8
-#define SHIFT_5_10 25
-#define SHIFT_11 7
-#define SHIFT_12 31
+#define SHIFT_5_10 21
+#define SHIFT_11 3
+#define SHIFT_12 19
 #define RS1_SHIFT 15
 #define RS2_SHIFT 20
 
@@ -27,10 +27,9 @@ void F_BLTU(CodeType T) {
 
     offset = (T & OFFSET_1_4)>>SHIFT_1_4;
     offset = offset | (T & OFFSET_5_10)>>SHIFT_5_10;
-    offset = offset | (T & OFFSET_11)>>SHIFT_11;
+    offset = offset | (T & OFFSET_11)<<SHIFT_11;
     offset = offset | (T & OFFSET_12)>>SHIFT_12;
-
-    printf("Offset 0x%08lx\r\n", offset);
+    printf("Offset 0x%08lx\r\n", offset/2);
     incPC();
     if(getRegister(R1) < getRegister(R2))
     {
