@@ -29,7 +29,8 @@ void F_BLTU(CodeType T) {
     offset = offset | (T & OFFSET_5_10)>>SHIFT_5_10;
     offset = offset | (T & OFFSET_11)<<SHIFT_11;
     offset = offset | (T & OFFSET_12)>>SHIFT_12;
-    printf("Offset 0x%08lx\r\n", offset/2);
+    if (offset & 0x800) offset = offset | 0xFFFFF800;
+    //printf("Offset 0x%08lx\r\n", offset/2);
     incPC();
     if(getRegister(R1) < getRegister(R2))
     {

@@ -20,11 +20,11 @@ void F_LHU(CodeType T) {
 	if (offset & 0x800) offset = offset | 0xFFFFF800; //sign-extended
 	data = getMEMD((AddressType)getRegister(rs1) + offset) & 0x0000FFFF; // zero-extends first 16bits
 
-	printf("Wykonam LHU, (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
-	printf("LHU: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
-	printf("LHU: rs1 adres: %d data: 0x%08lx \r\n", rs1, getRegister(rs1));
-	printf("LHU: offset: 0x%08lx \r\n", offset);
+	//printf("Wykonam LHU, (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
+	//printf("LHU: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
+	//printf("LHU: rs1 adres: %d data: 0x%08lx \r\n", rs1, getRegister(rs1));
+	//printf("LHU: offset: 0x%08lx \r\n", offset);
 	setRegister(rd, data);
-	printf("LHU after: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
+	//printf("LHU after: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
 	incPC();
 }

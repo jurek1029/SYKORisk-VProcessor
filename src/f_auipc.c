@@ -14,11 +14,11 @@ void F_AUIPC(CodeType T) {
 	rd = GET(RD);
 	offset = (T & MASK_OFFSET); //place zeros in lowest bits
 
-	printf("Wykonam AUIPC, (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
-	printf("AUIPC: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
-	printf("AUIPC: offset: 0x%08lx \r\n", offset);
+	//printf("Wykonam AUIPC, (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
+	//printf("AUIPC: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
+	//printf("AUIPC: offset: 0x%08lx \r\n", offset);
 	setRegister(rd, offset + getPC()); // fils lowest 12-bits with zeros and stores in rd
 	
-	printf("AUIPC after: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
+	//printf("AUIPC after: rd adres: %d data: 0x%08lx \r\n", rd, getRegister(rd));
 	incPC();
 }

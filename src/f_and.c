@@ -16,8 +16,8 @@ void F_AND(CodeType T) {
     R1 = (T & RS1_MASK) >> RS1_SHIFT;                  //identyfikacja numeru rejestru arg. 1
     R2 = (T & RS2_MASK) >> RS2_SHIFT;             //identyfikacja numeru rejestru arg. 2
 
-    printf("0x%04x: AND R%d, R%d\n", getPC(), R1, R2);
+    //printf("0x%04x: AND R%d, R%d\n", getPC(), R1, R2);
     setRegister(rd, (getRegister(R1) & getRegister(R2)));    //w�a�ciwe obliczenie
-    printf("AND: stan rd: 0x%08lx\r\n", getRegister(rd));
+    //printf("AND: stan rd: 0x%08lx\r\n", getRegister(rd));
     incPC();
 }

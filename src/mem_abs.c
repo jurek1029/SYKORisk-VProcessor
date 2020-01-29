@@ -14,7 +14,7 @@ void loadMEMC(char *file){          //�adowanie pami�ci kodu z pliku
     FILE *file_ptr;
     file_ptr=fopen(file, "rb");
     if(!file_ptr){
-        printf("MEMC file not found (%s)!\n", file);
+        //printf("MEMC file not found (%s)!\n", file);
         exit(-2);
     }
     fseek(file_ptr, 0, SEEK_SET);
@@ -26,7 +26,7 @@ void loadMEMD(char *file){        //�adowanie pami�ci danych z pliku
     FILE *file_ptr;
     file_ptr=fopen(file, "rb");
     if(!file_ptr){
-        printf("MEMD file not found (%s)!\n", file);
+        //printf("MEMD file not found (%s)!\n", file);
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
@@ -38,7 +38,7 @@ void loadREGS(char *file){        //�adowanie stanu rejestr�w i PC z pliku
     FILE *file_ptr;
     file_ptr=fopen(file, "rb");
     if(!file_ptr){
-        printf("MEMD file not found (%s)!\n", file);
+        //printf("MEMD file not found (%s)!\n", file);
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
@@ -52,7 +52,7 @@ void saveMEMD(char *file){        //zapisz zawarto�� pami�ci danych do pli
     FILE *file_ptr;
     file_ptr=fopen(file, "wb");
     if(!file_ptr){
-        printf("MEMD cannot open to write (%s)!\n", file);
+        //printf("MEMD cannot open to write (%s)!\n", file);
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
@@ -64,7 +64,7 @@ void saveREGS(char *file){        //zapisz zawarto�� rejestr�w i PC do pli
     FILE *file_ptr;
     file_ptr=fopen(file, "wb");
     if(!file_ptr){
-        printf("REGS cannot open to write (%s)!\n", file);
+        //printf("REGS cannot open to write (%s)!\n", file);
         exit(-3);
     }    
     fseek(file_ptr, 0, SEEK_SET);
@@ -87,7 +87,7 @@ DataType getMEMD(AddressType p){
 }
 
 void setMEMD(AddressType p, DataType v) {
-	printf("setMEMD write to:%d v:0x%08lx \n", p, v);
+	//printf("setMEMD write to:%d v:0x%08lx \n", p, v);
 	if (p > MAX_ADDRESS)               //Czy odwolanie nie siega poza pamiec danych
 		merror(OUT_OF_DATA_MEMORY_SPACE_ERROR, p);
 	MEMD[p] = v;
@@ -112,7 +112,7 @@ DataType getRegister(int n){
 }
 
 void setRegister(int n, DataType v){
-	printf("setRegister write to:%d v:0x%08lx \n", n,v);
+	//printf("setRegister write to:%d v:0x%08lx \n", n,v);
     if(n>MAX_REGISTER)               //Czy odwolanie nie siega poza zdefiniowany zestaw rejestrow
         merror(INVALID_REGISTER_SET, n);
     REG[n]=v;

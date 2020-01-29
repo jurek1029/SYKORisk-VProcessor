@@ -38,7 +38,7 @@ void F_AND(CodeType T);
 
 
 void merror(int i, int j){
-    printf("ERROR code: 0x%08lx with arg. 0x%08lx at PC=0x%08lx\r\n", i, j, getPC());
+    //printf("ERROR code: 0x%08lx with arg. 0x%08lx at PC=0x%08lx\r\n", i, j, getPC());
     saveMEMD("file_data_out.bin");      //zapisz zawarto�� pami�ci danych do pliku
     saveREGS("file_reg_out.bin");       //zapisz zawarto�� rejestr�w i PC do pliku
     exit(-1);
@@ -53,7 +53,7 @@ int main(void){
     setPC(0x0000);                      //Warunki pocz�tkowe PC (RESET)
     for(;;){
         T=getMEMC(getPC());            //T=ID operacji i arg. wbudowanych
-        printf("Pobrano instrukcje (T=0x%08lx)\r\n", T);
+        //printf("Pobrano instrukcje (T=0x%08lx)\r\n", T);
         CodeType i;
         i = (T & 0x7F);				//wyluskanie samego opcode
         switch(i){
@@ -95,7 +95,7 @@ int main(void){
 					break;
 				default:
 					printf("Wykryto nieznana instrukcje (PC=0x%08lx, T=0x%08lx)\r\n", getPC(), T);
-					printf("Wyluskany opcode (T=0x%08lx)\r\n", i);
+					//printf("Wyluskany opcode (T=0x%08lx)\r\n", i);
 					saveMEMD("file_data_out.bin");      //zapisz zawarto�� pami�ci danych do pliku
 					saveREGS("file_reg_out.bin");   //zapisz zawarto�� rejestr�w i PC do pliku 
 					return -1;

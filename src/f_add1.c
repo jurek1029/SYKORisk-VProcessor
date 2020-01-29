@@ -16,19 +16,19 @@ void F_ADD(CodeType T){
     R1 = (T & RS1_MASK) >> RS1_SHIFT;                  //identyfikacja numeru rejestru arg. 1
     R2 = (T & RS2_MASK) >> RS2_SHIFT;             //identyfikacja numeru rejestru arg. 2
 
-    printf("0x%04x: ADD R%d, R%d\n", getPC(), R1, R2);
-    printf("0x%04x: ADD R%d, R%d\n", getPC(), R1, R2);
+    //printf("0x%04x: ADD R%d, R%d\n", getPC(), R1, R2);
+    //printf("0x%04x: ADD R%d, R%d\n", getPC(), R1, R2);
     uint64_t r1_r2;
     r1_r2 = (uint64_t)(getRegister(R1));
     r1_r2 += (uint64_t)(getRegister(R2));
-    printf("0x%16lx\r\n", r1_r2);
+    //printf("0x%16lx\r\n", r1_r2);
     if(r1_r2 > MAX_DATA_VAL)
         setFlagsRegister(FLAG_C);                           //ustawienie flagi przeniesienia
     else
         resetFlagsRegister(FLAG_C);                         //wykasowanie flagi przeniesienia
 
     setRegister(rd, (getRegister(R1) + getRegister(R2)) % MAX_DATA_VAL);    //w�a�ciwe obliczenie
-    printf("rd: %d\r\n", getRegister(rd));
-    //printf("%d\r\n",getFlagsRegister(FLAG_C));
+    //printf("rd: %d\r\n", getRegister(rd));
+    ////printf("%d\r\n",getFlagsRegister(FLAG_C));
     incPC();                                                //zwi�kszenie licznika rozkaz�w
 }
